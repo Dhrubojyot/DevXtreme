@@ -15,12 +15,18 @@ export const CreateUser=mutation({
         //if not then add new user
         if(userData?.length==0){
 
-
-
-            
+            const data={
+                name:args.name,
+                email:args.email,
+                credits:50000
+            }
             const result=await ctx.db.insert('users', {
+                ...data
 
-            })
+            });
+            console.log(result);
+            return data;
         }
+        return userData[0]
     }
 })
